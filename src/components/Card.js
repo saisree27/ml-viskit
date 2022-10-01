@@ -1,18 +1,15 @@
 import React from "react";
 import "./Card.css";
+import { Link } from "react-router-dom";
 
-const Card = ({ title, body }) => {
+const Card = (props) => {
   return (
-    <div className="card-container">
-      <div className="card-title">
-        <h3>{title}</h3>
-      </div>
-      <div className="card-body">
-        <h3>{body}</h3>
-      </div>
-      <div className="btn">
-        <button>Select</button>
-      </div>
+    <div className="card">
+      <p className="btc">{props.name}</p>
+      <p>{props.description}</p>
+      <Link to="/contact" className="btn">
+        Open
+      </Link>
     </div>
   );
 };

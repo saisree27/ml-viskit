@@ -1,10 +1,14 @@
 import React from "react";
-import Card from "../components/Card";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import CardsSection from "../components/CardsSection";
 
 export default function Home() {
   return (
     <div>
-      <Card></Card>
+      <Navbar></Navbar>
+      <CardsSection></CardsSection>
+      <Footer></Footer>
     </div>
   );
 }
