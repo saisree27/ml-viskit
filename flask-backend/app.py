@@ -180,6 +180,14 @@ def train():
         if modelLayers[i] == "activation":
             model.add(keras.layers.Activation(modelLayers[i + 1]))
             i += 1
+        if modelLayers[i] == "batchnormalization":
+            if modelLayers[i + 1] == "axis":
+                model.add(keras.layers.BatchNormalization(axis=int(modelLayers[i + 2])))
+            else:
+                model.add(keras.layers.BatchNormalization())
+        if modelLayers[i] == "dropout":
+            model.add(keras.layers.Dropout(rate=float(modelLayers[i + 1])))
+        
     
     model.compile(optimizer=optimizer, loss=loss, metrics=metrics)
     print(model.summary())
