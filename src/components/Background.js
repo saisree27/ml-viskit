@@ -2,7 +2,7 @@ import React from "react";
 import "./Background.css";
 import { Link } from "react-router-dom";
 
-import spaceVideo from "../assets/space.mp4";
+import spaceVideo from "../assets/video.mp4";
 
 const Background = () => {
   return (
