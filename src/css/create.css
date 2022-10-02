@@ -19,6 +19,13 @@
     justify-content: space-between;
 }
 
+.box {
+    display: inline-block;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 1rem;
+}
+
 .inputsize {
     height: 12rem;
     width: 6rem;

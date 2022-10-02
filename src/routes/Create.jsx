@@ -7,6 +7,7 @@ import { DropField } from "../components/DropField";
 import { ItemTypes } from "../constants/ItemTypes";
 import "../css/create.css";
 import axios from "axios";
+import Tooltip from "@material-ui/core/Tooltip";
 
 export default function Create() {
   const [loss, setLoss] = useState("mse");
@@ -278,12 +279,36 @@ export default function Create() {
             </div>
             <div className="category">
               <h4>Activation</h4>
-              <Box name="ReLU" type={ItemTypes.ACTIVATION} color="red" />
-              <Box name="sigmoid" type={ItemTypes.ACTIVATION} color="red" />
-              <Box name="leakyReLU" type={ItemTypes.ACTIVATION} color="red" />
-              <Box name="tanh" type={ItemTypes.ACTIVATION} color="red" />
-              <Box name="ELU" type={ItemTypes.ACTIVATION} color="red" />
-              <Box name="softmax" type={ItemTypes.ACTIVATION} color="red" />
+              <Tooltip title="f(x) = x if x > 0, else 0" placement="top">
+                <div className="box">
+                  <Box name="ReLU" type={ItemTypes.ACTIVATION} color="red" /> 
+                </div>
+              </Tooltip>
+              <Tooltip title="f(x) = 1/(1+exp(-x))" placement="top">
+                <div className="box">
+                  <Box name="sigmoid" type={ItemTypes.ACTIVATION} color="red" />
+                </div>
+              </Tooltip>
+              <Tooltip title="f(x) = 0.01x if x < 0, else x" placement="top">
+                <div className="box">
+                  <Box name="leakyReLU" type={ItemTypes.ACTIVATION} color="red" />
+                </div>
+              </Tooltip>
+              <Tooltip title="2*sigmoid(2x)-1" placement="top">
+                <div className="box">
+                  <Box name="tanh" type={ItemTypes.ACTIVATION} color="red" />
+                </div>
+              </Tooltip>
+              <Tooltip title="f(x) = a(exp(x)-1) if x < 0 else x" placement="top">
+                <div className="box">
+                  <Box name="ELU" type={ItemTypes.ACTIVATION} color="red" />
+                </div>
+              </Tooltip>
+              <Tooltip title="f(x) = exp(x)/sum(exp(x))" placement="top">
+                <div className="box">
+                  <Box name="softmax" type={ItemTypes.ACTIVATION} color="red" />
+                </div>
+              </Tooltip>
             </div>
             <div className="category">
               <h4>Batch Normalization</h4>
@@ -296,7 +321,7 @@ export default function Create() {
             <div className="category">
               <h4>Dropout</h4>
               <Box name="Dropout" type={ItemTypes.DROPOUT} color="blue" />
-            </div>
+            </div>categories
             <div>
               <p className="submit" onClick={() => submit()}>Train model</p>
             </div>
