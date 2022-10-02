@@ -3,17 +3,17 @@ import "./Footer.css";
 import {
   FaGithub,
   FaLinkedin,
-  FaMailBulk,
-  FaPhone,
-  FaSearchLocation,
+  // FaMailBulk,
+  // FaPhone,
+  // FaSearchLocation,
 } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <div className="footer">
       <div className="footer-container">
-        <div className="left">
-          <div className="location">
+        {/* <div className="left">
+          {/* <div className="location">
             <FaSearchLocation
               size={20}
               style={{ color: "#ffffff", marginRight: "2rem" }}
@@ -40,8 +40,8 @@ const Footer = () => {
               />{" "}
               trips@galaxy.com
             </h4>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
         <div className="right">
           <h4>About the team</h4>
           <p>
