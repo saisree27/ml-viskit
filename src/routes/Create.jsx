@@ -70,6 +70,7 @@ export default function Create() {
         lastDroppedItem: null,
         strname: "New Layer",
         bg: "black",
+        setting: "",
       },
     ]);
   };
@@ -212,7 +213,10 @@ export default function Create() {
                   {strname == "Batch Normalization" ? (
                     <div className="size-input">
                       <p>Axis: </p>
-                      <input></input>
+                      <input
+                        value={setting}
+                        onChange={(e) => setSetting(e.target.value, index)}
+                      ></input>
                     </div>
                   ) : (
                     <></>
@@ -222,7 +226,7 @@ export default function Create() {
                       <p>Size (float): </p>
                       <input
                         value={setting}
-                        onChange={(e) => setSetting(e.target.value)}
+                        onChange={(e) => setSetting(e.target.value, index)}
                       ></input>
                     </div>
                   ) : (
@@ -289,8 +293,15 @@ export default function Create() {
           </div>
           <div className="score">
             <h3>Score</h3>
-            { trainComplete ? <p>Accuracy: {accuracy}, Loss: {modelLoss}</p> : started ? <p>Loading...</p> : <p>Train the model to view its score.</p>}
-            
+            {trainComplete ? (
+              <p>
+                Accuracy: {accuracy}, Loss: {modelLoss}
+              </p>
+            ) : started ? (
+              <p>Loading...</p>
+            ) : (
+              <p>Train the model to view its score.</p>
+            )}
           </div>
         </div>
         <div>
