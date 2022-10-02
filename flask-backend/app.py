@@ -11,8 +11,12 @@ import string
 import pandas as pd
 from sklearn import svm, tree, neighbors, neural_network
 from sklearn.model_selection import train_test_split
+from flask_cors import CORS, cross_origin
+
 
 app = Flask(__name__)
+CORS(app, support_credentials=True)
+
 
 @app.route('/')
 def home():
@@ -159,6 +163,7 @@ def getData():
     y_test = np.asarray(y_test).astype(np.float32)
     return X_train, X_test, y_train, y_test
 
+@cross_origin(supports_credentials=True)
 @app.route('/train', methods = ['POST'])
 def train():
     csvLink = request.json['data']
@@ -166,12 +171,13 @@ def train():
     optimizer = request.json['optimizer']
     loss = request.json['loss']
     metrics = request.json['metrics']
-    epochs = request.json['epochs']
+    epochs = int(request.json['epochs'])
 
     model = keras.Sequential()
     
     for i in range(len(modelLayers)):
         if modelLayers[i] == "input":
+            print(modelLayers[i + 1])
             model.add(keras.Input(int(modelLayers[i + 1])))
             i += 1
         if modelLayers[i] == "dense":

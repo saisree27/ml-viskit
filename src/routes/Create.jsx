@@ -6,8 +6,14 @@ import { Box } from "../components/Box";
 import { DropField } from "../components/DropField";
 import { ItemTypes } from "../constants/ItemTypes";
 import "../css/create.css";
+import axios from "axios";
 
 export default function Create() {
+  const [loss, setLoss] = useState("mse");
+  const [epochs, setEpochs] = useState(10);
+  const [optimizer, setOptimizer] = useState("sgd");
+  const [metrics, setMetrics] = useState("accuracy");
+
   const [layers, setLayers] = useState([
     {
       accepts: [
@@ -126,6 +132,43 @@ export default function Create() {
     [layers]
   );
 
+  const submit = () => {
+    let request = {
+      data: "",
+      optimizer,
+      loss,
+      metrics,
+      epochs
+    };
+    console.log(layers);
+    console.log(metrics);
+    let model = [];
+    model.push("input", "16");
+
+    for(let i = 0; i < layers.length; i++) {
+      if (layers[i].strname == "Dense") {
+        model.push("dense", layers[i].setting);
+      } else if (layers[i].strname == "Batch Normalization") {
+        model.push("batchnormalization", layers[i].setting);
+      } else if (layers[i].strname == "Dropout") {
+        model.push("dropout", layers[i].setting);
+      } else {
+        model.push(layers[i].strname.toLowerCase());
+      }
+    }
+
+    request.model = model;
+    console.log(request);
+    axios.post('http://localhost:5000/train', request)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+
   return (
     <div className="create">
       <div className="heading-wrapper">
@@ -133,7 +176,7 @@ export default function Create() {
       </div>
       <DndProvider backend={HTML5Backend}>
         <div style={{ overflow: "visible", clear: "both", display: "flex" }}>
-          <div className="inputsize">Input (Size: 8)</div>
+          <div className="inputsize">Input (Size: 16)</div>
           {layers.map(
             ({ accepts, lastDroppedItem, strname, bg, setting }, index) => (
               <div className="remove">
@@ -193,30 +236,30 @@ export default function Create() {
           <div className="form">
             <div className="entry">
               <p>Optimizer: </p>
-              <select>
-                <option>SGD</option>
-                <option>Adam</option>
-                <option>RMSprop</option>
-                <option>Adagrad</option>
-                <option>Adamax</option>
+              <select value={optimizer} onChange={(e) => setOptimizer(e.target.value)}>
+                <option value="sgd">SGD</option>
+                <option value="adam">Adam</option>
+                <option value="rmsprop">RMSprop</option>
+                <option value="adagrad">Adagrad</option>
+                <option value="adamax">Adamax</option>
               </select>
             </div>
             <div className="entry">
               <p>Epochs: </p>
-              <input></input>
+              <input value={epochs} onChange={(e) => setEpochs(e.target.value)}></input>
             </div>
             <div className="entry">
               <p>Loss: </p>
-              <select>
-                <option>Mean Squared Error</option>
-                <option>Categorical Cross-entropy</option>
-                <option>Binary Cross-entropy</option>
+              <select value={loss} onChange={(e) => setLoss(e.target.value)}>
+                <option value="mse">Mean Squared Error</option>
+                <option value="categorical_crossentropy">Categorical Crossentropy</option>
+                <option value="binary_crossentropy">Binary Crossentropy</option>
               </select>
             </div>
             <div className="entry">
               <p>Metrics: </p>
-              <select>
-                <option>Accuracy</option>
+              <select value={metrics} onChange={(e) => setMetrics(e.target.value)}>
+                <option value="accuracy">Accuracy</option>
               </select>
             </div>
           </div>
@@ -255,7 +298,7 @@ export default function Create() {
               <Box name="Dropout" type={ItemTypes.DROPOUT} color="blue" />
             </div>
             <div>
-              <p className="submit">Train model</p>
+              <p className="submit" onClick={() => submit()}>Train model</p>
             </div>
           </div>
         </div>
