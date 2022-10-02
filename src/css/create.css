@@ -22,9 +22,10 @@
 .inputsize {
     height: 12rem;
     width: 6rem;
-    margin-right: 0.5rem;
+    margin-right: 1.5rem;
     margin-bottom: 1.5rem;
     background-color: black;
+    border: 1px solid white;
     color: rgb(255, 255, 255);
     padding: 1rem;
     text-align: center;
@@ -39,7 +40,8 @@
     margin-right: 1.5rem;
     margin-bottom: 1.5rem;
     background-color: black;
-    color: white;
+    border: 1px solid white;
+    color: rgb(255, 255, 255);
     padding: 1rem;
     text-align: center;
     font-size: 1rem;
@@ -54,6 +56,7 @@
 
 .layerSettings {
     flex-direction: column;
+    display: flex;
 }
 
 .layer-holder {
@@ -68,11 +71,52 @@
 }
 
 .removelayer {
-    border: 1px dashed black;
+    border: 1px dashed white;
     height: 10%;
+}
+
+.size-input {
+    display: flex;
 }
 
 .p {
     margin: 0;
     padding: 0;
+}
+
+input {
+    width: 50px;
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+}
+
+.submit {
+    border: 1px dashed purple;
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    cursor:pointer;
+    float: left;
+    height: 75px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.submit:hover {
+    background-color: purple;
+    transition: 0.5s;
+}
+
+.form {
+    display: flex;
+    justify-content:flex-start;
+}
+
+.entry {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
 }
