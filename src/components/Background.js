@@ -1,6 +1,9 @@
 import React from "react";
 import "./Background.css";
 import { Link } from "react-router-dom";
+import {
+  logout
+} from "../firebase";
 
 import spaceVideo from "../assets/video.mp4";
 
@@ -17,8 +20,8 @@ const Background = () => {
           <Link to="/home" className="btn">
             Home
           </Link>
-          <Link to="/login" className="btn btn-light">
-            Login
+          <Link to="/login" className="btn btn-light" onClick={logout()}>
+            Account
           </Link>
         </div>
       </div>
