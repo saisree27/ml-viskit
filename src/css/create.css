@@ -91,7 +91,7 @@
     padding: 0;
 }
 
-input {
+.create-page-input {
     width: 50px;
     border: 1px solid white;
     background-color: black;

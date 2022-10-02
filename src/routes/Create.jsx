@@ -204,6 +204,7 @@ export default function Create() {
                     <div className="size-input">
                       <p>Size (int): </p>
                       <input
+                        className="create-page-input"
                         value={setting}
                         onChange={(e) => setSetting(e.target.value, index)}
                       ></input>
@@ -215,6 +216,7 @@ export default function Create() {
                     <div className="size-input">
                       <p>Axis: </p>
                       <input
+                        className="create-page-input"
                         value={setting}
                         onChange={(e) => setSetting(e.target.value, index)}
                       ></input>
@@ -226,6 +228,7 @@ export default function Create() {
                     <div className="size-input">
                       <p>Size (float): </p>
                       <input
+                        className="create-page-input"
                         value={setting}
                         onChange={(e) => setSetting(e.target.value, index)}
                       ></input>
@@ -265,6 +268,7 @@ export default function Create() {
               <div className="entry">
                 <p>Epochs: </p>
                 <input
+                  className="create-page-input"
                   value={epochs}
                   onChange={(e) => setEpochs(e.target.value)}
                 ></input>
