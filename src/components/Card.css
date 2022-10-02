@@ -20,6 +20,8 @@
 .card {
   text-align: center;
   padding: 1rem;
+  border-radius: 6px;
+  background-color: #141414;
 }
 
 .card:hover {
