@@ -18,7 +18,7 @@ export default function Login() {
                             <label for="chk" aria-hidden="true">Sign Up</label>
                             <input type="text" name="txt" placeholder="User name" required=""/>
                             <input type="password" name="pswd" placeholder="Password" required=""/>
-                            <button onClick={() => navigate('/')}>Sign Up</button>
+                            <button onClick={() => navigate('/home')}>Sign Up</button>
                         </form>
                     </div>
 
@@ -27,11 +27,12 @@ export default function Login() {
                             <label for="chk" aria-hidden="true">Login</label>
                             <input type="text" name="txt" placeholder="User name" required=""/>
                             <input type="password" name="pswd" placeholder="Password" required=""/>
-                            <button onClick={() => navigate('/')}>Login</button>
+                            <button onClick={() => navigate('/home')}>Login</button>
                         </form>
                     </div>
             </div>
             </body>
+            <Footer/>
         </div>
     )
 }
