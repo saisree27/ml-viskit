@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "./Card";
+import { Link } from "react-router-dom";
 import "./CardsSection.css";
 
 const CardsSection = () => {
@@ -10,6 +11,13 @@ const CardsSection = () => {
         <Card name="name" description="description" />
         <Card name="name" description="description" />
         <Card name="name" description="description" />
+        <Card name="name" description="description" />
+        <Card name="name" description="description" />
+        <Card name="name" description="description" />
+        <Card name="name" description="description" />
+      </div>
+      <div className="submit-container">
+        <button className="btn btn-light">Submit</button>
       </div>
     </div>
   );
