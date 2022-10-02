@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Modal.css";
 
-export default function Modal() {
+export default function Modal({ click }) {
+  console.log(click);
   const [modal, setModal] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -64,9 +65,12 @@ export default function Modal() {
               </div>
             </p>
             <div className="btn-container">
-              <Link className="btn btn-light" to="/create">
+              <button className="btn btn-light" onClick={() => {
+                click(name, description);
+                toggleModal();
+              }}>
                 SUBMIT
-              </Link>
+              </button>
             </div>
           </div>
         </div>

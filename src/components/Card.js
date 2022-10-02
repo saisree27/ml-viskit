@@ -7,9 +7,12 @@ const Card = (props) => {
     <div className="card">
       <p className="btc">{props.name}</p>
       <p>{props.description}</p>
-      <Link to="/contact" className="btn">
+      <Link to="/create" className="btn">
         Open
       </Link>
+      <button className="btn remove" onClick={() => props.click()}>
+        Remove
+      </button>
     </div>
   );
 };
