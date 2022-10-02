@@ -1,17 +1,20 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Modal.css";
 
 export default function Modal() {
   const [modal, setModal] = useState(false);
-  const [counter, updateCounter] = useState(0);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [featureNumber, updateFeatureNumber] = useState(0);
 
   function increment() {
-    updateCounter(counter + 1);
+    updateFeatureNumber(featureNumber + 1);
   }
 
   function decrement() {
-    if (counter > 0) {
-      updateCounter(counter - 1);
+    if (featureNumber > 0) {
+      updateFeatureNumber(featureNumber - 1);
     }
   }
 
@@ -35,11 +38,21 @@ export default function Modal() {
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
             <p>
-              <label className="input-label">
-                Enter the number of features:
-              </label>
+              <h3>Name :</h3>
+              <input
+                className="text-input"
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+              ></input>
+              <h3>Description :</h3>
+              <input
+                className="text-input"
+                type="text"
+                onChange={(e) => setDescription(e.target.value)}
+              ></input>
+              <h3>Number of features:</h3>
               <div className="counter-label">
-                <h2>{counter}</h2>
+                <h2>{featureNumber}</h2>
               </div>
               <div className="input-field">
                 <button onClick={decrement} className="btn">
@@ -51,9 +64,9 @@ export default function Modal() {
               </div>
             </p>
             <div className="btn-container">
-              <button className="btn btn-light" onClick={toggleModal}>
+              <Link className="btn btn-light" to="/create">
                 SUBMIT
-              </button>
+              </Link>
             </div>
           </div>
         </div>

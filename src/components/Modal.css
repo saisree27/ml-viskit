@@ -27,7 +27,7 @@ body.active-modal {
   position: absolute;
   top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -35%);
   line-height: 1.4;
   background: #181818;
   padding: 40px 30px;
@@ -66,7 +66,6 @@ body.active-modal {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
 }
 
 .input-label {
@@ -75,4 +74,15 @@ body.active-modal {
   justify-content: center;
   margin: 20px;
   font-size: 30px;
+}
+
+.text-input {
+  width: 100%;
+  padding: 15px 5px;
+  margin: 8px 2;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  background-color: black;
+  color: #ffffff;
 }
