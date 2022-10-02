@@ -17,9 +17,6 @@ export const Box = function Box({ name, type, color }) {
     item: { name },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
-      if (item && dropResult) {
-        alert(`You dropped ${item.name} into ${dropResult.name}!`)
-      }
     },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),

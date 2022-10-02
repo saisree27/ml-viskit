@@ -1,24 +1,35 @@
+import { memo } from 'react'
 import { useDrop } from 'react-dnd'
-import { ItemTypes } from '../constants/ItemTypes.js'
 const style = {
+  height: '12rem',
+  width: '12rem',
+  marginRight: '0.2rem',
+  marginBottom: '1.5rem',
   border: '1px dashed black',
-  color: 'black',
   padding: '1rem',
   textAlign: 'center',
   fontSize: '1rem',
   lineHeight: 'normal',
   float: 'left',
 }
-export const DropField = () => {
-  const [{ canDrop, isOver }, drop] = useDrop(() => ({
-    accept: [ItemTypes.DENSE, ItemTypes.ACTIVATION, ItemTypes.BATCH, ItemTypes.DROPOUT],
-    drop: () => ({ name: 'Dustbin' }),
+export const DropField = memo(function DropField({
+  accept,
+  lastDroppedItem,
+  onDrop,
+  strname,
+  bg
+}) {
+  console.log(strname);
+  console.log(bg);
+  const [{ isOver, canDrop }, drop] = useDrop({
+    accept,
+    drop: onDrop,
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
     }),
-  }))
-  const isActive = canDrop && isOver
+  })
+  const isActive = isOver && canDrop
   let backgroundColor = '#ffffff'
   if (isActive) {
     backgroundColor = 'darkgreen'
@@ -26,8 +37,8 @@ export const DropField = () => {
     backgroundColor = 'darkkhaki'
   }
   return (
-    <div ref={drop} style={{ ...style, backgroundColor }} data-testid="dustbin">
-      {isActive ? 'Release to drop' : 'Drag a box here'}
+    <div ref={drop} style={{ ...style, backgroundColor: bg }} data-testid="dustbin">
+      {strname}
     </div>
   )
-}
+})
