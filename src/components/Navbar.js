@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import "./Navbar.css";
+import {
+  logout
+} from "../firebase";
 
 const NavBar = () => {
   const [click, setClick] = useState(false);
@@ -30,7 +33,7 @@ const NavBar = () => {
           <Link to="/home">Home</Link>
         </li>
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/login">Account</Link>
         </li>
         <li>
           <Link to="/create">Create</Link>
