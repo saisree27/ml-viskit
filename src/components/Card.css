@@ -20,6 +20,8 @@
 .card {
   text-align: center;
   padding: 1rem;
+  border-radius: 6px;
+  background-color: #141414;
 }
 
 .card:hover {
@@ -58,7 +60,7 @@
 
 @media screen and (max-width: 980px) {
   .card-container {
-    max-width: 90%;
+    max-width: 100%;
     margin: auto;
     grid-template-columns: 1fr;
   }

@@ -18,7 +18,6 @@ import {
 
 
 export default function Login() {
-
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [name, setName] = useState("");
@@ -77,5 +76,8 @@ export default function Login() {
             </body>
             <Footer/>
         </div>
-    )
+      </body>
+      <Footer />
+    </div>
+  );
 }

@@ -81,10 +81,6 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     console.error(err);
     alert(err.message);
   }
-  navigate = useNavigate("/home");
-
-  navigate("/home")
-
 };
 const sendPasswordReset = async (email) => {
   try {
