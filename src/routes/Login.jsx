@@ -1,11 +1,15 @@
 import React from "react";
 import '../css/login.css';
 import { useNavigate } from 'react-router-dom';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Login() {
     const navigate = useNavigate();
     return (
-        <body class="body">
+        <div>
+            <Navbar />
+            <body class="body">
             <div class="main-login">  	
                 <input type="checkbox" id="chk" aria-hidden="true"/>
 
@@ -27,6 +31,7 @@ export default function Login() {
                         </form>
                     </div>
             </div>
-        </body>
+            </body>
+        </div>
     )
 }
