@@ -7,12 +7,17 @@ import { DropField } from "../components/DropField";
 import { ItemTypes } from "../constants/ItemTypes";
 import "../css/create.css";
 import axios from "axios";
+import Tooltip from "@material-ui/core/Tooltip";
 
 export default function Create() {
   const [loss, setLoss] = useState("mse");
   const [epochs, setEpochs] = useState(10);
   const [optimizer, setOptimizer] = useState("sgd");
   const [metrics, setMetrics] = useState("accuracy");
+  const [trainComplete, setTrainComplete] = useState(false);
+  const [accuracy, setAccuracy] = useState(0);
+  const [modelLoss, setmodelLoss] = useState(0);
+  const [started, setStarted] = useState(false);
 
   const [layers, setLayers] = useState([
     {
@@ -66,6 +71,7 @@ export default function Create() {
         lastDroppedItem: null,
         strname: "New Layer",
         bg: "black",
+        setting: "",
       },
     ]);
   };
@@ -133,19 +139,21 @@ export default function Create() {
   );
 
   const submit = () => {
+    setStarted(true);
+    setTrainComplete(false);
     let request = {
       data: "",
       optimizer,
       loss,
       metrics,
-      epochs
+      epochs,
     };
     console.log(layers);
     console.log(metrics);
     let model = [];
     model.push("input", "16");
 
-    for(let i = 0; i < layers.length; i++) {
+    for (let i = 0; i < layers.length; i++) {
       if (layers[i].strname == "Dense") {
         model.push("dense", layers[i].setting);
       } else if (layers[i].strname == "Batch Normalization") {
@@ -159,15 +167,18 @@ export default function Create() {
 
     request.model = model;
     console.log(request);
-    axios.post('http://localhost:5000/train', request)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-
+    axios
+      .post("http://localhost:5000/train", request)
+      .then(function (response) {
+        console.log(response);
+        setTrainComplete(true);
+        setAccuracy(response.data.accuracy);
+        setmodelLoss(response.data.loss);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="create">
@@ -203,7 +214,10 @@ export default function Create() {
                   {strname == "Batch Normalization" ? (
                     <div className="size-input">
                       <p>Axis: </p>
-                      <input></input>
+                      <input
+                        value={setting}
+                        onChange={(e) => setSetting(e.target.value, index)}
+                      ></input>
                     </div>
                   ) : (
                     <></>
@@ -213,7 +227,7 @@ export default function Create() {
                       <p>Size (float): </p>
                       <input
                         value={setting}
-                        onChange={(e) => setSetting(e.target.value)}
+                        onChange={(e) => setSetting(e.target.value, index)}
                       ></input>
                     </div>
                   ) : (
@@ -231,37 +245,64 @@ export default function Create() {
             +
           </div>
         </div>
-        <div>
-          <h3>Options</h3>
-          <div className="form">
-            <div className="entry">
-              <p>Optimizer: </p>
-              <select value={optimizer} onChange={(e) => setOptimizer(e.target.value)}>
-                <option value="sgd">SGD</option>
-                <option value="adam">Adam</option>
-                <option value="rmsprop">RMSprop</option>
-                <option value="adagrad">Adagrad</option>
-                <option value="adamax">Adamax</option>
-              </select>
+        <div className="options-and-score">
+          <div>
+            <h3>Options</h3>
+            <div className="form">
+              <div className="entry">
+                <p>Optimizer: </p>
+                <select
+                  value={optimizer}
+                  onChange={(e) => setOptimizer(e.target.value)}
+                >
+                  <option value="sgd">SGD</option>
+                  <option value="adam">Adam</option>
+                  <option value="rmsprop">RMSprop</option>
+                  <option value="adagrad">Adagrad</option>
+                  <option value="adamax">Adamax</option>
+                </select>
+              </div>
+              <div className="entry">
+                <p>Epochs: </p>
+                <input
+                  value={epochs}
+                  onChange={(e) => setEpochs(e.target.value)}
+                ></input>
+              </div>
+              <div className="entry">
+                <p>Loss: </p>
+                <select value={loss} onChange={(e) => setLoss(e.target.value)}>
+                  <option value="mse">Mean Squared Error</option>
+                  <option value="categorical_crossentropy">
+                    Categorical Crossentropy
+                  </option>
+                  <option value="binary_crossentropy">
+                    Binary Crossentropy
+                  </option>
+                </select>
+              </div>
+              <div className="entry">
+                <p>Metrics: </p>
+                <select
+                  value={metrics}
+                  onChange={(e) => setMetrics(e.target.value)}
+                >
+                  <option value="accuracy">Accuracy</option>
+                </select>
+              </div>
             </div>
-            <div className="entry">
-              <p>Epochs: </p>
-              <input value={epochs} onChange={(e) => setEpochs(e.target.value)}></input>
-            </div>
-            <div className="entry">
-              <p>Loss: </p>
-              <select value={loss} onChange={(e) => setLoss(e.target.value)}>
-                <option value="mse">Mean Squared Error</option>
-                <option value="categorical_crossentropy">Categorical Crossentropy</option>
-                <option value="binary_crossentropy">Binary Crossentropy</option>
-              </select>
-            </div>
-            <div className="entry">
-              <p>Metrics: </p>
-              <select value={metrics} onChange={(e) => setMetrics(e.target.value)}>
-                <option value="accuracy">Accuracy</option>
-              </select>
-            </div>
+          </div>
+          <div className="score">
+            <h3>Score</h3>
+            {trainComplete ? (
+              <p>
+                Accuracy: {accuracy}, Loss: {modelLoss}
+              </p>
+            ) : started ? (
+              <p>Loading...</p>
+            ) : (
+              <p>Train the model to view its score.</p>
+            )}
           </div>
         </div>
         <div>
@@ -278,12 +319,36 @@ export default function Create() {
             </div>
             <div className="category">
               <h4>Activation</h4>
-              <Box name="ReLU" type={ItemTypes.ACTIVATION} color="red" />
-              <Box name="sigmoid" type={ItemTypes.ACTIVATION} color="red" />
-              <Box name="leakyReLU" type={ItemTypes.ACTIVATION} color="red" />
-              <Box name="tanh" type={ItemTypes.ACTIVATION} color="red" />
-              <Box name="ELU" type={ItemTypes.ACTIVATION} color="red" />
-              <Box name="softmax" type={ItemTypes.ACTIVATION} color="red" />
+              <Tooltip title="f(x) = x if x > 0, else 0" placement="top">
+                <div className="box">
+                  <Box name="ReLU" type={ItemTypes.ACTIVATION} color="red" /> 
+                </div>
+              </Tooltip>
+              <Tooltip title="f(x) = 1/(1+exp(-x))" placement="top">
+                <div className="box">
+                  <Box name="sigmoid" type={ItemTypes.ACTIVATION} color="red" />
+                </div>
+              </Tooltip>
+              <Tooltip title="f(x) = 0.01x if x < 0, else x" placement="top">
+                <div className="box">
+                  <Box name="leakyReLU" type={ItemTypes.ACTIVATION} color="red" />
+                </div>
+              </Tooltip>
+              <Tooltip title="2*sigmoid(2x)-1" placement="top">
+                <div className="box">
+                  <Box name="tanh" type={ItemTypes.ACTIVATION} color="red" />
+                </div>
+              </Tooltip>
+              <Tooltip title="f(x) = a(exp(x)-1) if x < 0 else x" placement="top">
+                <div className="box">
+                  <Box name="ELU" type={ItemTypes.ACTIVATION} color="red" />
+                </div>
+              </Tooltip>
+              <Tooltip title="f(x) = exp(x)/sum(exp(x))" placement="top">
+                <div className="box">
+                  <Box name="softmax" type={ItemTypes.ACTIVATION} color="red" />
+                </div>
+              </Tooltip>
             </div>
             <div className="category">
               <h4>Batch Normalization</h4>
@@ -296,9 +361,11 @@ export default function Create() {
             <div className="category">
               <h4>Dropout</h4>
               <Box name="Dropout" type={ItemTypes.DROPOUT} color="blue" />
-            </div>
+            </div>categories
             <div>
-              <p className="submit" onClick={() => submit()}>Train model</p>
+              <p className="submit" onClick={() => submit()}>
+                Train model
+              </p>
             </div>
           </div>
         </div>

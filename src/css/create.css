@@ -19,6 +19,13 @@
     justify-content: space-between;
 }
 
+.box {
+    display: inline-block;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 1rem;
+}
+
 .inputsize {
     height: 12rem;
     width: 6rem;
@@ -89,6 +96,11 @@ input {
     border: 1px solid white;
     background-color: black;
     color: white;
+}
+
+.options-and-score {
+    display: flex;
+    justify-content: space-between;
 }
 
 .submit {
