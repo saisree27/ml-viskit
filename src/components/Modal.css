@@ -56,7 +56,7 @@ body.active-modal {
   border: 0;
 }
 
-.input-field {
+.counter-btn-groups {
   display: flex;
   align-items: center;
   justify-content: center;
