@@ -18,21 +18,22 @@ const customStyles = {
 
 const CardsSection = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [cards, setCards] = useState([
+    { strname: "Default", description: "Test pipeline" },
+  ]);
 
+  let modalClick = (name, description) => {
+    setCards([...cards, { strname: name, description }]);
+  };
   return (
     <div className="cardsSection-container">
       <div className="card-container">
-        <Card name="name" description="description" />
-        <Card name="name" description="description" />
-        <Card name="name" description="description" />
-        <Card name="name" description="description" />
-        <Card name="name" description="description" />
-        <Card name="name" description="description" />
-        <Card name="name" description="description" />
-        <Card name="name" description="description" />
+        {cards.map(({ strname, description }, index) => (
+          <Card name={strname} description={description} />
+        ))}
       </div>
       <div className="submit-container">
-        <Modal />
+        <Modal click={modalClick}/>
       </div>
     </div>
   );
