@@ -91,6 +91,11 @@ input {
     color: white;
 }
 
+.options-and-score {
+    display: flex;
+    justify-content: space-between;
+}
+
 .submit {
     border: 1px dashed purple;
     background-color: black;
