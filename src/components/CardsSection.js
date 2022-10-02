@@ -25,11 +25,17 @@ const CardsSection = () => {
   let modalClick = (name, description) => {
     setCards([...cards, { strname: name, description }]);
   };
+
+  let removeCard = (index) => {
+    var newCards = Array.from(cards);
+    newCards.splice(index, 1);
+    setCards(newCards);
+  }
   return (
     <div className="cardsSection-container">
       <div className="card-container">
         {cards.map(({ strname, description }, index) => (
-          <Card name={strname} description={description} />
+          <Card name={strname} description={description} click={() => removeCard(index)}/>
         ))}
       </div>
       <div className="submit-container">

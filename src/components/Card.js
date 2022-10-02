@@ -10,6 +10,9 @@ const Card = (props) => {
       <Link to="/create" className="btn">
         Open
       </Link>
+      <button className="btn remove" onClick={() => props.click()}>
+        Remove
+      </button>
     </div>
   );
 };
