@@ -8,6 +8,7 @@ import { ItemTypes } from "../constants/ItemTypes";
 import "../css/create.css";
 import axios from "axios";
 import Tooltip from "@material-ui/core/Tooltip";
+import NavBar from "../components/Navbar";
 
 export default function Create() {
   const [loss, setLoss] = useState("mse");
@@ -181,12 +182,14 @@ export default function Create() {
   };
 
   return (
-    <div className="create">
+    <div className="create-holder">
+      <NavBar />
+      <div className="create">
       <div className="heading-wrapper">
-        <h2 className="heading">Create a Pipeline</h2>
+        <h1 className="heading">Create a Pipeline</h1>
       </div>
       <DndProvider backend={HTML5Backend}>
-        <div style={{ overflow: "visible", clear: "both", display: "flex" }}>
+        <div style={{ overflow: "visible", clear: "both", display: "flex" }} className="pipeline">
           <div className="inputsize">Input (Size: 16)</div>
           {layers.map(
             ({ accepts, lastDroppedItem, strname, bg, setting }, index) => (
@@ -250,7 +253,7 @@ export default function Create() {
         </div>
         <div className="options-and-score">
           <div>
-            <h3>Options</h3>
+            <h2>Options</h2>
             <div className="form">
               <div className="entry">
                 <p>Optimizer: </p>
@@ -297,7 +300,7 @@ export default function Create() {
             </div>
           </div>
           <div className="score">
-            <h3>Score</h3>
+            <h2>Score</h2>
             {trainComplete ? (
               <p>
                 Accuracy: {accuracy}, Loss: {modelLoss}
@@ -310,10 +313,10 @@ export default function Create() {
           </div>
         </div>
         <div>
-          <h3>Layers</h3>
+          <h2>Layers</h2>
           <div className="categories">
             <div className="category">
-              <h4>Dense</h4>
+              <h3>Dense</h3>
               <Box
                 name="Dense"
                 className="transition"
@@ -322,7 +325,7 @@ export default function Create() {
               />
             </div>
             <div className="category">
-              <h4>Activation</h4>
+              <h3>Activation</h3>
               <Tooltip title="f(x) = x if x > 0, else 0" placement="top">
                 <div className="box">
                   <Box name="ReLU" type={ItemTypes.ACTIVATION} color="red" /> 
@@ -355,7 +358,7 @@ export default function Create() {
               </Tooltip>
             </div>
             <div className="category">
-              <h4>Batch Normalization</h4>
+              <h3>Batch Normalization</h3>
               <Box
                 name="Batch Normalization"
                 type={ItemTypes.BATCH}
@@ -363,7 +366,7 @@ export default function Create() {
               />
             </div>
             <div className="category">
-              <h4>Dropout</h4>
+              <h3>Dropout</h3>
               <Box name="Dropout" type={ItemTypes.DROPOUT} color="blue" />
             </div>categories
             <div>
@@ -374,6 +377,7 @@ export default function Create() {
           </div>
         </div>
       </DndProvider>
+    </div>
     </div>
   );
 }
