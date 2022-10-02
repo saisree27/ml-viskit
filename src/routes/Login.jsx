@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export default function Login() {
-
     const [userName, setUserName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -60,5 +59,8 @@ export default function Login() {
             </body>
             <Footer/>
         </div>
-    )
+      </body>
+      <Footer />
+    </div>
+  );
 }

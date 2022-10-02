@@ -1,8 +1,22 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Modal.css";
 
 export default function Modal() {
   const [modal, setModal] = useState(false);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [featureNumber, updateFeatureNumber] = useState(0);
+
+  function increment() {
+    updateFeatureNumber(featureNumber + 1);
+  }
+
+  function decrement() {
+    if (featureNumber > 0) {
+      updateFeatureNumber(featureNumber - 1);
+    }
+  }
 
   const toggleModal = () => {
     setModal(!modal);
@@ -19,23 +33,41 @@ export default function Modal() {
       <button onClick={toggleModal} className="btn btn-light">
         Open
       </button>
-
       {modal && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <h2>Example Testing</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-              perferendis suscipit officia recusandae, eveniet quaerat assumenda
-              id fugit, dignissimos maxime non natus placeat illo iusto!
-              Sapiente dolorum id maiores dolores? Illum pariatur possimus
-              quaerat ipsum quos molestiae rem aspernatur dicta tenetur. Sunt
-              placeat tempora vitae enim incidunt porro fuga ea.
+              <h3>Name :</h3>
+              <input
+                className="text-input"
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+              ></input>
+              <h3>Description :</h3>
+              <input
+                className="text-input"
+                type="text"
+                onChange={(e) => setDescription(e.target.value)}
+              ></input>
+              <h3>Number of features:</h3>
+              <div className="counter-label">
+                <h2>{featureNumber}</h2>
+              </div>
+              <div className="counter-btn-groups">
+                <button onClick={decrement} className="btn">
+                  -
+                </button>
+                <button onClick={increment} className="btn">
+                  +
+                </button>
+              </div>
             </p>
-            <button className="btn btn-light" onClick={toggleModal}>
-              CLOSE
-            </button>
+            <div className="btn-container">
+              <Link className="btn btn-light" to="/create">
+                SUBMIT
+              </Link>
+            </div>
           </div>
         </div>
       )}
