@@ -60,6 +60,7 @@ export default function Login() {
                 placeholder="Name"
                 required=""
                 onChange={(e) => setName(e.target.value)}
+                className="login-input"
               />
               <input
                 type="text"
@@ -67,6 +68,7 @@ export default function Login() {
                 placeholder="Email"
                 required=""
                 onChange={(e) => setEmail(e.target.value)}
+                className="login-input"
               />
               <input
                 type="password"
@@ -74,6 +76,7 @@ export default function Login() {
                 placeholder="Password"
                 required=""
                 onChange={(e) => setPassword(e.target.value)}
+                className="login-input"
               />
               <button
                 onClick={() =>
@@ -97,6 +100,7 @@ export default function Login() {
                 placeholder="Email"
                 required=""
                 onChange={(e) => setEmail(e.target.value)}
+                className="login-input"
               />
               <input
                 type="password"
@@ -104,6 +108,7 @@ export default function Login() {
                 placeholder="Password"
                 required=""
                 onChange={(e) => setPassword(e.target.value)}
+                className="login-input"
               />
               <button
                 onClick={() => logInWithEmailAndPassword(email, password)}

@@ -33,7 +33,7 @@ label {
   cursor: pointer;
   transition: 0.5s ease-in-out;
 }
-input {
+.login-input {
   width: 60%;
   height: 20px;
   justify-content: center;
