@@ -201,7 +201,7 @@ def train():
     # for now, get training data from Titanic dataset (later, we'll use CSV)
     X_train, X_test, y_train, y_test = getData()
     
-    model.fit(X_train, y_train, epochs=epochs, batch_size=2)
+    model.fit(X_train, y_train, epochs=epochs)
     result = model.evaluate(X_test, y_test)
 
     return jsonify(
