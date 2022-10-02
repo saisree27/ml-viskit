@@ -1,0 +1,78 @@
+.create {
+    height: 100vh;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.heading {
+    margin: 0;
+    margin-top: 10px;
+}
+
+.categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.inputsize {
+    height: 12rem;
+    width: 6rem;
+    margin-right: 0.5rem;
+    margin-bottom: 1.5rem;
+    background-color: black;
+    color: rgb(255, 255, 255);
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    line-height: normal;
+    float: left;
+}
+
+.addlayer {
+    height: 12rem;
+    width: 2rem;
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    line-height: normal;
+    float: left;
+}
+
+
+.transition {
+    transition: all 0.5s ease;
+}
+
+.layerSettings {
+    flex-direction: column;
+}
+
+.layer-holder {
+    clear: "both";
+    display: "flex";
+    overflow: visible;
+}
+
+.remove {
+    display: flex;
+    margin-right: 1.3rem;
+}
+
+.removelayer {
+    border: 1px dashed black;
+    height: 10%;
+}
+
+.p {
+    margin: 0;
+    padding: 0;
+}
