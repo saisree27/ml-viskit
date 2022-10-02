@@ -1,0 +1,19 @@
+.cardsSection-container {
+  width: 100%;
+  padding: 8rem 1rem;
+  marginbottom: 100px;
+  alignitems: "center";
+  justifycontent: "center";
+}
+.card-container {
+  max-width: 1140px;
+  margin: auto;
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
+}
+.submit-container {
+  margin: 120px;
+  width: 20%;
+  margin-left: auto;
+}
