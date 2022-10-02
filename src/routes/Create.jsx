@@ -8,6 +8,8 @@ import { ItemTypes } from "../constants/ItemTypes";
 import "../css/create.css";
 import axios from "axios";
 import Tooltip from "@material-ui/core/Tooltip";
+import NavBar from "../components/Navbar";
+import loadVideo from "../assets/loading.mp4";
 
 export default function Create() {
   const [loss, setLoss] = useState("mse");
@@ -182,6 +184,7 @@ export default function Create() {
 
   return (
     <div className="create">
+      <NavBar></NavBar>
       <div className="heading-wrapper">
         <h2 className="heading">Create a Pipeline</h2>
       </div>
@@ -300,6 +303,9 @@ export default function Create() {
               </p>
             ) : started ? (
               <p>Loading...</p>
+              // <video autoPlay loop muted id="video">
+              //   <source src={loadVideo} type="loading/mp4" />
+              // </video>
             ) : (
               <p>Train the model to view its score.</p>
             )}
