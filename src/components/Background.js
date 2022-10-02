@@ -12,7 +12,7 @@ const Background = () => {
       </video>
       <div className="content">
         <h1>ML VISKIT</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>A new way to visualize your ML pipelines.</p>
         <div>
           <Link to="/home" className="btn">
             Home
