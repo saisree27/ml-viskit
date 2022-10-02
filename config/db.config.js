@@ -1,5 +1,5 @@
 module.exports = {
-    HOST: "localhost",
+    HOST: "mlviskit.gpxejjk.mongodb.net",
     PORT: 27017,
-    DB: "mlviskit_db"
+    DB: "mlviskit"
   };

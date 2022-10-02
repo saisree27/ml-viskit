@@ -39,12 +39,12 @@ const db = require("./models");
 const Role = db.role;
 
 db.mongoose
-  .connect(uri, {
+  .connect("mongodb+srv://mlviskit:hackmit2022@mlviskit.gpxejjk.mongodb.net/?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log("Successfully connect to MongoDB.");
+    console.log("Successfully connected to MongoDB.");
     initial();
   })
   .catch(err => {
