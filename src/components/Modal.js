@@ -3,6 +3,17 @@ import "./Modal.css";
 
 export default function Modal() {
   const [modal, setModal] = useState(false);
+  const [counter, updateCounter] = useState(0);
+
+  function increment() {
+    updateCounter(counter + 1);
+  }
+
+  function decrement() {
+    if (counter > 0) {
+      updateCounter(counter - 1);
+    }
+  }
 
   const toggleModal = () => {
     setModal(!modal);
@@ -19,23 +30,31 @@ export default function Modal() {
       <button onClick={toggleModal} className="btn btn-light">
         Open
       </button>
-
       {modal && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <h2>Example Testing</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-              perferendis suscipit officia recusandae, eveniet quaerat assumenda
-              id fugit, dignissimos maxime non natus placeat illo iusto!
-              Sapiente dolorum id maiores dolores? Illum pariatur possimus
-              quaerat ipsum quos molestiae rem aspernatur dicta tenetur. Sunt
-              placeat tempora vitae enim incidunt porro fuga ea.
+              <label className="input-label">
+                Enter the number of features:
+              </label>
+              <div className="counter-label">
+                <h2>{counter}</h2>
+              </div>
+              <div className="input-field">
+                <button onClick={decrement} className="btn">
+                  -
+                </button>
+                <button onClick={increment} className="btn">
+                  +
+                </button>
+              </div>
             </p>
-            <button className="btn btn-light" onClick={toggleModal}>
-              CLOSE
-            </button>
+            <div className="btn-container">
+              <button className="btn btn-light" onClick={toggleModal}>
+                SUBMIT
+              </button>
+            </div>
           </div>
         </div>
       )}
