@@ -68,3 +68,11 @@ body.active-modal {
   justify-content: center;
   margin: 20px;
 }
+
+.input-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  font-size: 30px;
+}

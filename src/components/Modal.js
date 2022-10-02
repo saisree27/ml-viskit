@@ -34,7 +34,6 @@ export default function Modal() {
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <h2>Example Testing</h2>
             <p>
               <label className="input-label">
                 Enter the number of features:
@@ -43,11 +42,11 @@ export default function Modal() {
                 <h2>{counter}</h2>
               </div>
               <div className="input-field">
-                <button onClick={increment} className="btn">
-                  +
-                </button>
                 <button onClick={decrement} className="btn">
                   -
+                </button>
+                <button onClick={increment} className="btn">
+                  +
                 </button>
               </div>
             </p>
