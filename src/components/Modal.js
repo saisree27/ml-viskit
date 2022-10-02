@@ -54,7 +54,7 @@ export default function Modal() {
               <div className="counter-label">
                 <h2>{featureNumber}</h2>
               </div>
-              <div className="input-field">
+              <div className="counter-btn-groups">
                 <button onClick={decrement} className="btn">
                   -
                 </button>
