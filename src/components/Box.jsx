@@ -3,7 +3,8 @@ import { ItemTypes } from '../constants/ItemTypes.js'
 
 let style = {
   border: '1px dashed gray',
-  backgroundColor: 'white',
+  backgroundColor: 'black',
+  color: 'white',
   padding: '0.5rem 1rem',
   marginRight: '1.5rem',
   marginBottom: '1.5rem',
@@ -28,7 +29,7 @@ export const Box = function Box({ name, type, color }) {
     e.target.style.backgroundColor = color;
   }
   const onMouseLeave = (e) => {
-    e.target.style.backgroundColor = "white";
+    e.target.style.backgroundColor = "black";
   }
   return (
     <div 
