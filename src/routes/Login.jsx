@@ -16,16 +16,18 @@ export default function Login() {
           <div class="signup">
             <form>
               <label for="chk" aria-hidden="true">
-                Sign Up
+                SIGN UP
               </label>
               <input
                 type="text"
+                className="input-field"
                 name="txt"
                 placeholder="User name"
                 required=""
               />
               <input
                 type="password"
+                className="input-field"
                 name="pswd"
                 placeholder="Password"
                 required=""
@@ -37,15 +39,17 @@ export default function Login() {
           <div class="login">
             <form>
               <label for="chk" aria-hidden="true">
-                Login
+                LOGIN
               </label>
               <input
+                className="input-field"
                 type="text"
                 name="txt"
                 placeholder="User name"
                 required=""
               />
               <input
+                className="input-field"
                 type="password"
                 name="pswd"
                 placeholder="Password"
