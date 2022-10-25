@@ -1,2 +1,3 @@
 # ML-Viskit
-A web application that lets you build fully functional neural networks without any code - just drag and drop!
+
+The learning curve for Machine Learning is quite large and intimidating to people with little coding experience. We aim to make ML more accessible. ML-Viskit is a web application that allows you to create fully functional ML pipelines with 0 code! You drag and drop neural network layers (dense, activation functions, batch normalization, and others) sequentially into a model. ML-Viskit allows you to train the created model directly on the backend server and returns loss and metrics which users can specify. ML-Viskit also has a Firebase database and login system which allows users to save and create individual pipelines without losing their work.
